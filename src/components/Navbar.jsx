@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../assets/logo.svg';
 import { FaHome, FaDollarSign, FaMap, FaSwimmingPool, FaImages, FaMapMarkerAlt, FaFileAlt, FaBars, FaTimes } from 'react-icons/fa';
 
-const Navbar = () => {
+const Navbar = ({ toggleSidebar }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -65,6 +65,13 @@ const Navbar = () => {
           cursor: pointer;
           color: #8B0000;
         }
+        .sidebar-toggle {
+          display: none;
+          font-size: 28px;
+          cursor: pointer;
+          color: #8B0000;
+          margin-right: 15px;
+        }
         @media (max-width: 768px) {
           ul.nav-links {
             flex-direction: column;
@@ -84,12 +91,17 @@ const Navbar = () => {
           .menu-icon {
             display: block;
           }
+          .sidebar-toggle {
+            display: block;
+          }
         }
       `}</style>
       <nav>
         <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+          <div className="sidebar-toggle" onClick={toggleSidebar}>
+            <FaBars />
+          </div>
           <img src={logo} alt="Logo" style={{ height: '40px', marginRight: '10px' }} />
-          
         </div>
         <div className="menu-icon" onClick={toggleMenu}>
           {menuOpen ? <FaTimes /> : <FaBars />}
